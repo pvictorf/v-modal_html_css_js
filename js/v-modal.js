@@ -13,13 +13,15 @@ function openModal(element, preventClose) {
       $(element + ' .modal-close-area').on('click', function() {
          closeModal(element);
       })
+   } else {
+      $(element + ' .modal-close-area').off('click');
    }
 }
 
 function closeModal(element) {
    $(element).addClass('out');
    setTimeout(function() {
-      $(element).removeClass('four');
+      $(element).removeClass('four').removeClass('out');
       $('body').removeClass('modal-active');
    }, 300) 
 }
