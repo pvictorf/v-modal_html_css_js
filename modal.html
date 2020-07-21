@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="./css/v-modal.min.css">
+</head>
+
+<body>
+
+   <button id="four" class="button" onclick="openModal('#modal-container')">open!</button><br>
+
+   <div id="modal-container">
+      <div class="modal-close-area"></div>
+      <div class="modal-background">
+         <div class="modal">
+            <div class="modal-close">X</div>
+
+            <div class="modal-content">
+               <h2>I'm a Modal</h2>
+               <form action="#/">
+                  <div style='display: flex; flex-direction:column;'>
+                     <label for="">Nome</label>
+                     <input type="text" style="border: 2px solid #cccc;" />
+                  </div>
+               </form>
+            </div>
+
+         </div>
+      </div>
+   </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="./js/app.js"></script>
+
+</html>
