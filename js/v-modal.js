@@ -17,11 +17,9 @@ function openModal(element, preventClose) {
 
 function addEventCloseModal(modalEl, element, preventClose) {
    const closers = modalEl.parentNode.querySelectorAll('.modal-close');
-   if(closers.length) {
-      for(let i in closers) {
-         closers[i].addEventListener("click", function() {closeModal(element);});
-      }
-   }
+   closers.forEach(function(modalClose) {
+      modalClose.addEventListener("click", function() {closeModal(element)});
+   });
 
    if(!preventClose) {
       const modalOverlay = modalEl.parentNode.querySelector('.modal');
