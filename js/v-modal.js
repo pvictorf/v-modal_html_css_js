@@ -1,25 +1,46 @@
 function openModal(element, preventClose) {
 
-   $(element).removeAttr('class').addClass('modal-container').addClass('four');
-   $('body').addClass('modal-active');
+   const modalEl = document.querySelector(element);
+   const body = document.querySelector('body');
 
-   $(element + ' .modal-close').on('click', function() {
-      closeModal(element);
+   if(!modalEl) {
+      console.warn("[v-modal] "+modalEl +" not found.");
+      return;
+   }
+
+   body.classList.add('modal-active'); 
+   modalEl.classList.add('modal-container');
+   modalEl.classList.add('four');
+
+   addEventCloseModal(modalEl, element, preventClose);     
+}
+
+function addEventCloseModal(modalEl, element, preventClose) {
+   const closers = modalEl.parentNode.querySelectorAll('.modal-close');
+   closers.forEach(function(modalClose) {
+      modalClose.addEventListener("click", function() {closeModal(element)});
    });
 
    if(!preventClose) {
-      $(element + ' .modal-close-area').on('click', function() {
-         closeModal(element);
-      })
-   } else {
-      $(element + ' .modal-close-area').off('click');
+      const modalOverlay = modalEl.parentNode.querySelector('.modal');
+      
+      modalOverlay.addEventListener("click", function(e) {
+         if(modalOverlay === e.target) {
+            closeModal(element)
+         }
+      });
    }
 }
 
 function closeModal(element) {
-   $(element).addClass('out');
+   const modalEl = document.querySelector(element);
+   const body = document.querySelector('body');
+
+   modalEl.classList.add('out');
+
    setTimeout(function() {
-      $(element).removeClass('four').removeClass('out');
-      $('body').removeClass('modal-active');
-   }, 300) 
+      body.classList.remove('modal-active');
+      modalEl.classList.remove('four')
+      modalEl.classList.remove('out');
+   }, 300);
 }
